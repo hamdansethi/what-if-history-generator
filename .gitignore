@@ -1,0 +1,36 @@
+# Node.js dependencies
+/server/node_modules
+/client/node_modules
+
+# Dependency directories
+node_modules/
+
+# Build artifacts
+/client/build
+/dist
+/build
+
+# IDE and OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.log
+.vscode/
+
+# Environment variables
+.env
+/server/.env
+
+# Yarn specific
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Npm specific
+package-lock.json
+
+# Log files
+*.log

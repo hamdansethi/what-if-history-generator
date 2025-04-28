@@ -1,0 +1,359 @@
+/* client/src/App.css */
+
+/* Basic Reset & Body */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  min-height: 100vh;
+}
+
+/* Ensure root takes height for centering */
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+.app-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  margin-top: 20px; /* Add some margin from the top */
+  margin-bottom: 40px; /* Add margin at the bottom */
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 15px;
+  color: #2c3e50; /* Dark blue-grey */
+}
+
+h1 {
+  font-size: 2.2em;
+  margin-bottom: 25px;
+  color: #1a2e3b;
+}
+
+h2 {
+  font-size: 1.6em;
+  color: #34495e; /* Slightly lighter blue-grey */
+  margin-top: 10px; /* Add space above */
+}
+
+h3 {
+  font-size: 1.3em;
+  margin-top: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  text-align: left;
+}
+
+/* Input Section */
+.input-section {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#what-if-question {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  resize: vertical; /* Allow vertical resizing */
+}
+
+#what-if-question::placeholder {
+  color: #999;
+}
+
+#generate-button {
+  padding: 12px 20px;
+  background-color: #3498db; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+#generate-button:disabled {
+  background-color: #a9cce3; /* Lighter blue when disabled */
+  cursor: not-allowed;
+}
+#generate-button:not(:disabled):hover {
+  background-color: #2980b9; /* Darker blue */
+}
+#generate-button:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+/* Loading Indicator */
+.loading {
+  font-size: 1.1em;
+  color: #555;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Result Card */
+.result-container {
+  margin-top: 30px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.result-card {
+  background-color: #ffffff; /* Default: could be changed by JS */
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px; /* Space before action buttons */
+}
+
+.timeline-icons {
+  font-size: 1.8em; /* Make icons larger */
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Vertical Timeline */
+.timeline {
+  position: relative;
+  padding-left: 40px; /* Space for the line and icons */
+  margin-top: 15px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  bottom: 5px;
+  width: 3px;
+  background-color: #bdc3c7; /* Light grey line */
+  border-radius: 2px;
+}
+
+.timeline-event {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 5px 0;
+}
+
+.timeline-event::before { /* The dot on the timeline */
+  content: '';
+  position: absolute;
+  left: -35px; /* Position relative to the padding */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-color: #3498db; /* Blue dot */
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 3px #3498db;
+}
+
+.timeline-event strong { /* Year */
+  display: block;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 3px;
+}
+
+/* Accordions for Butterfly Effects */
+.accordions {
+  margin-top: 15px;
+}
+
+.accordions details {
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  overflow: hidden; /* Ensures border-radius applies correctly */
+}
+
+.accordions summary {
+  padding: 10px 15px;
+  background-color: #ecf0f1; /* Light grey */
+  cursor: pointer;
+  font-weight: 500;
+  list-style: none; /* Remove default marker */
+  position: relative;
+  transition: background-color 0.2s ease;
+  padding-left: 30px; /* Space for custom arrow */
+}
+.accordions summary:hover {
+  background-color: #dfe4e6;
+}
+
+.accordions summary::before { /* Custom arrow */
+  content: '▶';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+  display: inline-block; /* Needed for transform */
+}
+
+.accordions details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.accordions details[open] summary {
+   background-color: #dde1e2;
+}
+
+.accordions .effect-content {
+  padding: 15px;
+  background-color: #fdfdfd;
+  border-top: 1px solid #eee;
+}
+
+
+/* Image Placeholder */
+.image-placeholder {
+  background-color: #f9f9f9;
+  border: 1px dashed #ccc;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 4px;
+  text-align: center;
+}
+.image-placeholder strong {
+   color: #555;
+}
+.image-placeholder small {
+  display: block;
+  margin-top: 8px;
+  color: #888;
+}
+
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease-in-out; /* Fade in with results */
+}
+
+.action-buttons button {
+  padding: 10px 18px;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1em;
+}
+
+#generate-another-button {
+  background-color: #e8f6fd;
+  color: #3498db;
+}
+#generate-another-button:hover {
+  background-color: #d0ecfa;
+  border-color: #a5d8f6;
+}
+
+#share-button {
+  background-color: #eafaf1;
+  color: #2ecc71; /* Green */
+}
+#share-button:hover {
+  background-color: #d5f5e3;
+  border-color: #a9dfbf;
+}
+.share-icon {
+  display: inline-block; /* Allows transform */
+  transition: transform 0.2s ease;
+}
+#share-button:hover .share-icon {
+  transform: scale(1.1);
+}
+
+/* Utility Classes */
+.hidden { /* Using visibility might be better if transitions needed */
+  display: none !important;
+  /* visibility: hidden;
+  opacity: 0; */
+}
+
+/* Error Message */
+.error {
+  color: #e74c3c; /* Red */
+  background-color: #fbecec;
+  border: 1px solid #f5c6cb;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap');
+
+
+/* Basic Responsiveness */
+@media (max-width: 600px) {
+  .app-container {
+      padding: 15px; /* Slightly less padding */
+       margin-top: 10px;
+       margin-bottom: 20px;
+  }
+  h1 {
+      font-size: 1.8em;
+  }
+  h2 {
+      font-size: 1.4em;
+  }
+  h3 {
+      font-size: 1.2em;
+  }
+  .action-buttons {
+      flex-direction: column;
+      gap: 10px;
+  }
+   #what-if-question {
+      min-height: 60px;
+      font-size: 0.95em;
+   }
+   #generate-button, .action-buttons button {
+       font-size: 1em;
+       padding: 10px 15px;
+   }
+}
